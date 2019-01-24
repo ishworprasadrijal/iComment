@@ -71,7 +71,7 @@
         <div class="inputs">
           <textarea class="form-control edited"><?=$comment->comment;?></textarea>
           <div class="clearfix"></div>
-          <label for="file_<?=$comment->id;?>" class="upload_icon"><span class="glyphicon glyphicon-picture"></span></label><input type="file" accept="image/*, .pdf, .doc, .docx" multiple="multiple" name="avatar[]" id="file_<?=$comment->id?>" class="image_input" style="display:none;">
+          <label for="file_<?=$comment->id;?>" class="upload_icon"><span class="glyphicon glyphicon-picture"></span></label><input type="file" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, text/plain, application/pdf, image/*" multiple="multiple" name="avatar[]" id="file_<?=$comment->id?>" class="image_input" style="display:none;">
         </div>
         <div class="row image_holder"></div>
         <div class="row old_image_holder">
