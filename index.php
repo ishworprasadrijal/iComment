@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>iComment</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="iComment, comment like facebook, upload multiple files by ajax">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <style type="text/css">.save,.cancel{display: none;} .edited{display: none;} .upload_icon{display: none;} img{width:100px;padding:3px;}</style>
+  <style type="text/css">.save,.cancel{display: none;} .edited{display: none;} .upload_icon{display: none;} img{width:100px;padding:3px;} textarea{min-height:200px;}</style>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
@@ -47,18 +48,13 @@
 
 
 
-<div class="container">
-  <h2>My Comments</h2>
+<div class="container" style="max-width: 50%;">
+  <h2>iComment</h2>
   <div class="alert alert-success" style="display: none;position: fixed;width: 100%; height: 50px;"></div>
   <div class="clearfix"></div>
   <hr/>
 
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><hr/>
+  <p>iComment is a simple php and ajax function that lists comments under a topic and edit each comments with paragraphs of text and multiple file uploads to support the comment. Main theme of building this application is to speed up some frequent actions like uploading files through ajax and messages. Posting attachment on a comment and post them through ajax is most frequently need in programming so the theme of making this is just to see an example for file uploading through ajax. I'm not a designer so I'm so sorry for the worst design.</p><hr/>
   
   <?php foreach($comments as $key => $comment): ?>
     <div class="media" data-id="<?=$comment->id;?>">
@@ -71,7 +67,7 @@
         <div class="inputs">
           <textarea class="form-control edited"><?=$comment->comment;?></textarea>
           <div class="clearfix"></div>
-          <label for="file_<?=$comment->id;?>" class="upload_icon"><span class="glyphicon glyphicon-picture"></span></label><input type="file" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, text/plain, application/pdf, image/*" multiple="multiple" name="avatar[]" id="file_<?=$comment->id?>" class="image_input" style="display:none;">
+          <label for="file_<?=$comment->id;?>" class="upload_icon"><span class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-picture"></span></span></label><input type="file" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, text/plain, application/pdf, image/*" multiple="multiple" name="avatar[]" id="file_<?=$comment->id?>" class="image_input" style="display:none;">
         </div>
         <div class="row image_holder"></div>
         <div class="row old_image_holder">
@@ -94,10 +90,10 @@
             
           </div>
         <div class="clearfix">
-          <span class="btn edit btn-xs btn-warning"><span class="glyphicon glyphicon-pencil"></span></span>
-          <span class="btn save btn-xs btn-success"><span class="glyphicon glyphicon-floppy-save"></span></span>
-          <span class="btn cancel btn-xs btn-info"><span class="glyphicon glyphicon-repeat"></span></span>
-          <span class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-trash"></span></span>
+          <span class="btn edit btn-sm btn-warning"><span class="glyphicon glyphicon-pencil"></span></span>
+          <span class="btn save btn-sm btn-success"><span class="glyphicon glyphicon-floppy-save"></span></span>
+          <span class="btn cancel btn-sm btn-info"><span class="glyphicon glyphicon-repeat"></span></span>
+          <span class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash"></span></span>
         </div>
       </div>
     </div>
@@ -192,6 +188,7 @@
 
   $(document).on('click','.cancel',function(){
     var media = $(this).closest('.media');
+    $('.image_holder').html("");
     savemode(media);
   })
 
