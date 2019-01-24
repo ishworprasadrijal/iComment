@@ -71,7 +71,7 @@
         <div class="inputs">
           <textarea class="form-control edited"><?=$comment->comment;?></textarea>
           <div class="clearfix"></div>
-          <label for="file_<?=$comment->id;?>" class="upload_icon"><span class="glyphicon glyphicon-picture"></span></label><input type="file" multiple="multiple" name="avatar[]" id="file_<?=$comment->id?>" class="image_input" accept=".png, .jpg, .jpeg, .bmp, .ttf, .txt, .csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" style="display:none;">
+          <label for="file_<?=$comment->id;?>" class="upload_icon"><span class="glyphicon glyphicon-picture"></span></label><input type="file" accept="image/*, .pdf, .doc, .docx" multiple="multiple" name="avatar[]" id="file_<?=$comment->id?>" class="image_input" style="display:none;">
         </div>
         <div class="row image_holder"></div>
         <div class="row old_image_holder">
@@ -123,6 +123,8 @@
       data :{id:id, comment:comment, user:user, files:files},
       success:function(response){
         $('.alert').html(response.message);
+        $(elem).find('.image_holder').html('');
+        $(elem).find('.old_image_holder').html(response.files);
         flash();
       }
     })
