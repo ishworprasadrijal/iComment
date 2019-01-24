@@ -11,7 +11,7 @@
 		if(is_array($files)){
 			foreach($files as $key => $file){
 				list($information, $data) = explode(";base64,",$file);
-				list(,$extension) = explode("image/",$information);
+				list(,$extension) = explode("/",$information);
 				$filename = 'uploads/'.$_POST['id'].'_'.$_POST['user'].'_'.time().'_'.rand(000,999).'.'.$extension;
 				file_put_contents($filename, base64_decode($data));
 			}

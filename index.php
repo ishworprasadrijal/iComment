@@ -71,15 +71,26 @@
         <div class="inputs">
           <textarea class="form-control edited"><?=$comment->comment;?></textarea>
           <div class="clearfix"></div>
-          <label for="file_<?=$comment->id;?>" class="upload_icon"><span class="glyphicon glyphicon-picture"></span></label><input type="file" multiple="multiple" name="avatar[]" id="file_<?=$comment->id?>" class="image_input" style="display:none;">
+          <label for="file_<?=$comment->id;?>" class="upload_icon"><span class="glyphicon glyphicon-picture"></span></label><input type="file" multiple="multiple" name="avatar[]" id="file_<?=$comment->id?>" class="image_input" accept=".png, .jpg, .jpeg, .bmp, .ttf, .txt, .csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" style="display:none;">
         </div>
         <div class="row image_holder"></div>
         <div class="row old_image_holder">
           <?
           $results=glob("uploads/*_".$comment->name."_*",GLOB_BRACE);
           foreach($results as $key => $result){ ?>
-            <img src="<?=$result;?>">
-          <?php }          ?>
+            <?php 
+              $extension = pathinfo($result, PATHINFO_EXTENSION);
+              if(in_array($extension,array('jpg', 'jpeg', 'png', 'bmp', 'gif', 'tiff'))){
+                echo '<img src="'.$result.'">';              
+              }elseif(in_array($extension,array('doc', 'msword', 'docx', 'txt', 'rtf', 'xls', 'xlsx', 'ppt', 'pptx', 'csv'))){
+                echo '<img src="knownfile.png">';
+              }elseif(in_array($extension,array('pdf'))){
+                echo '<img src="pdf.png">';
+              }elseif(!in_array($extension,array('jpg', 'jpeg', 'png', 'bmp', 'gif', 'tiff', 'pdf', 'doc', 'docx', 'txt', 'rtf', 'xls', 'xlsx', 'ppt', 'pptx', 'csv'))){
+                echo '<img src="unknown.png">';
+              }
+              ?>
+          <?php }  ?>
             
           </div>
         <div class="clearfix">
