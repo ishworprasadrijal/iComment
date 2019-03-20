@@ -71,7 +71,7 @@
         </div>
         <div class="row image_holder"></div>
         <div class="row old_image_holder">
-          <?
+          <?php 
           $results=glob("uploads/*_".$comment->name."_*",GLOB_BRACE);
           foreach($results as $key => $result){ ?>
             <?php 
